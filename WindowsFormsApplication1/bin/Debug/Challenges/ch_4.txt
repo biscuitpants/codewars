@@ -1,0 +1,1 @@
+int countDown = 999999;@for(countDown = 100; countDown >= 25; countDown--) { countDown; }@Now backwards! Count down from 100 to 25, including 100 and 25.@25@80@1@20

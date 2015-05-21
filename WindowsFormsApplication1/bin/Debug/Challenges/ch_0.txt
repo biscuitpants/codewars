@@ -1,0 +1,1 @@
+s.... aString = ;@string hello = "Hello, World!"@This is the first challenge! Make a 'string' variable that contains 'Hello, World!'@Hello, World!@60@1@20

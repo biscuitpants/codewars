@@ -1,0 +1,1 @@
+int aSquare = 1;@int aSquare = 755 * 755@You're doing well! Now, work out the value of 755 squared.@2@60@1@20

@@ -1,0 +1,1 @@
+int counter; for()@int counter = 0;for(int i = 0; i <= 10; i++) {counter = i;}@Nice! Challenge 4 is a bit different. Count to 10, setting 'counter' to the current value each time you count.@10@80@1@20
