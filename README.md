@@ -1,4 +1,4 @@
-# codewars
+# code wars
 
 Code Wars is a C# varsity project.
 
