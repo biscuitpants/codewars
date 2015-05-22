@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WindowsFormsApplication1
+﻿namespace WindowsFormsApplication1
 {
     public class RunResult
     {
-
         private bool hasErrors;
         private string errorText;
         private string outputText;
 
         public RunResult()
-        { 
+        {
             //Default constructor
         }
 

@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
     public partial class frmMain : Form
     {
-        const string REGEX_TOKENS = "(public |double |int |break |else |switch |case |char |return |for |void |default |if |static |while )";
-        Color IDENTIFIER_COLOR = Color.YellowGreen;
-        int timeLeft = 0;        
+        private const string REGEX_TOKENS = "(public |double |int |break |else |switch |case |char |return |for |void |default |if |static |while )";
+        private Color IDENTIFIER_COLOR = Color.YellowGreen;
+        private int timeLeft = 0;
 
-        GameState theGame = Program.theGameState;
+        private GameState theGame = Program.theGameState;
 
         public frmMain()
         {
@@ -29,7 +23,7 @@ namespace WindowsFormsApplication1
             lblPlayerName.Text = theGame.Game_userName;
             lblUserDifficulty.Text = theGame.Game_userDifficulty.ToString();
             lblTimeTicker.Text = firstChallenge.ChallengeTime + " sec";
-            lblRoundCount.Text = "Round "+ 0;
+            lblRoundCount.Text = "Round " + 0;
             lblScoreCount.Text = 0 + " points";
             rtbPlayerOneCodeBlock.Text = firstChallenge.ChallengeText;
             rtbErrorBlock.Text = firstChallenge.ChallengeHint;
@@ -37,17 +31,14 @@ namespace WindowsFormsApplication1
             timeLeft = theGame.Game_currentTimeLeft;
 
             btnRunCode.Enabled = false;
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void rtbPlayerOneCodeBlock_TextChanged(object sender, EventArgs e)
@@ -78,12 +69,11 @@ namespace WindowsFormsApplication1
                 box.SelectionColor = IDENTIFIER_COLOR;
                 box.SelectionStart = cursorStartPosition;
                 box.SelectionColor = Color.White;
-            }  
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -101,7 +91,6 @@ namespace WindowsFormsApplication1
             string codeBlockText = rtbPlayerOneCodeBlock.Text;
             string theAnswer = theGame.AllChallenges[theGame.Game_currentRound].ChallengeAnswer;
             timer1.Stop();
-            
 
             //Get a result from compiling the code
             RunResult theResult = theGame.AllChallenges[theGame.Game_currentRound].checkChallengeAgainstUserInput(codeBlockText);
@@ -115,7 +104,6 @@ namespace WindowsFormsApplication1
 
                 SetupGameRound(theGame);
             }
-
             else
             {
                 rtbErrorBlock.Text = theResult.ErrorText;
@@ -125,7 +113,6 @@ namespace WindowsFormsApplication1
 
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void addPointsToScore(int time)
@@ -138,7 +125,7 @@ namespace WindowsFormsApplication1
             int multiply = theGame.AllChallenges[theGame.Game_currentRound].ChallengeFactor;
             int timeLeft = time;
             int answer = multiply * time;
-            
+
             theGame.Game_userScore += answer;
             lblScoreCount.Text = theGame.Game_userScore + " points";
         }
@@ -174,12 +161,10 @@ namespace WindowsFormsApplication1
             rtbPlayerOneCodeBlock.Text = theGame.AllChallenges[theGame.Game_currentRound].ChallengeText;
             rtbErrorBlock.Text = theGame.AllChallenges[theGame.Game_currentRound].ChallengeHint;
             lblScoreCount.Text = theGame.Game_userScore + " points";
-
         }
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-
             if (timeLeft >= 15)
             {
                 lblTimeTicker.ForeColor = Color.Red;
@@ -192,7 +177,8 @@ namespace WindowsFormsApplication1
 
                 MessageBox.Show("Game Over!");
             }
-            else {
+            else
+            {
                 theGame.Game_currentTimeLeft--;
                 this.lblTimeTicker.Text = timeLeft + " sec";
             }

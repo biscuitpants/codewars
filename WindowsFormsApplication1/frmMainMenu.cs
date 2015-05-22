@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -20,7 +13,6 @@ namespace WindowsFormsApplication1
 
         private void informatioBoxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,7 +33,6 @@ namespace WindowsFormsApplication1
 
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -80,12 +71,10 @@ namespace WindowsFormsApplication1
                 Program.theGameState = new GameState(userName, selectedDifficulty, true, true);
                 frmMain theMainGame = new frmMain();
 
-                
                 theMainGame.Show();
+
+                this.Hide();
             }
-
-
-
         }
     }
 }

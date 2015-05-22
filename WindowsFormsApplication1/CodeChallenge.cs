@@ -1,20 +1,14 @@
 ﻿using Microsoft.CSharp;
-using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-
     /// <summary>
     ///     Code challenge class
-    ///     
+    ///
     ///     Holds a code challenge
     /// </summary>
 
@@ -42,7 +36,6 @@ namespace WindowsFormsApplication1
         {
             get { return expectedOutput; }
             set { expectedOutput = value; }
-
         }
 
         public int ChallengeFactor
@@ -75,10 +68,9 @@ namespace WindowsFormsApplication1
             set { challengeTime = value; }
         }
 
-
         /// <summary>
         ///     Checks the code challenge against an input
-        ///     
+        ///
         ///     Checks the users input against a code challenge. Uses the C# Code Provider class to compile and run the code
         ///     Returns a CompileResult object, which holds errors and output text
         /// </summary>
@@ -91,7 +83,7 @@ namespace WindowsFormsApplication1
         {
             RunResult theResult = new RunResult();
 
-            /* 
+            /*
              * Two parts of the source code
              * The first part is the namespace and the class, with a generic method
              * Second part is what the end bit of the program, which closes the braces
@@ -100,7 +92,7 @@ namespace WindowsFormsApplication1
                 @"
 
                 using System;
-                
+
                 namespace Challenge
                 {
                     public class CodeTest
@@ -124,7 +116,6 @@ namespace WindowsFormsApplication1
                     {"CompilerVersion", "v3.5"}
                 };
             CSharpCodeProvider provider = new CSharpCodeProvider(providerOptions);
-            
 
             CompilerParameters compilerParams = new CompilerParameters
             {
@@ -158,7 +149,7 @@ namespace WindowsFormsApplication1
                 MethodInfo mi = o.GetType().GetMethod("TestThisCode");
 
                 //Write to debug the output of the method
-                
+
                 theResult.OutputText = (string)mi.Invoke(o, null);
 
                 Debug.WriteLine(theResult.OutputText);
@@ -167,6 +158,4 @@ namespace WindowsFormsApplication1
             return theResult;
         }
     }
-
-
 }
