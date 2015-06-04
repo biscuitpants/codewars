@@ -48,24 +48,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeChallenge.cs" />
-    <Compile Include="CompileResult.cs" />
+    <Compile Include="frmCodeResources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCodeResources.Designer.cs">
+      <DependentUpon>frmCodeResources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGameOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGameOver.Designer.cs">
+      <DependentUpon>frmGameOver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RunResult.cs" />
     <Compile Include="frmAboutPage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAboutPage.Designer.cs">
       <DependentUpon>frmAboutPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="frmGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCodeInformationDex.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCodeInformationDex.Designer.cs">
-      <DependentUpon>frmCodeInformationDex.cs</DependentUpon>
+    <Compile Include="frmGame.Designer.cs">
+      <DependentUpon>frmGame.cs</DependentUpon>
     </Compile>
     <Compile Include="GameState.cs" />
     <Compile Include="Program.cs" />
@@ -79,11 +85,14 @@
     <EmbeddedResource Include="frmAboutPage.resx">
       <DependentUpon>frmAboutPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="frmCodeResources.resx">
+      <DependentUpon>frmCodeResources.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCodeInformationDex.resx">
-      <DependentUpon>frmCodeInformationDex.cs</DependentUpon>
+    <EmbeddedResource Include="frmGame.resx">
+      <DependentUpon>frmGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGameOver.resx">
+      <DependentUpon>frmGameOver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
@@ -113,6 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\card1-bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MSFT_logo_png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\learncs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\programr_theme2013_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,45 +11,40 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void informatioBoxToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        //When the user clicks on the about item in the menu, do the following
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Create a new frmAboutPage
             frmAboutPage about = new frmAboutPage();
+            //Show the about page
             about.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void frmMainMenu_Load(object sender, EventArgs e)
-        {
-        }
-
+        //When the user clicks the btnStartGame, do the following
         private void button1_Click(object sender, EventArgs e)
         {
+            //Create a difficulty variable
             GameState.Difficulty selectedDifficulty = GameState.Difficulty.Easy;
+            //Get the users name
+            //If the text box is empty then default their name to 'Unknown Coder'
             string userName = string.IsNullOrWhiteSpace(txtUserName.Text) ? "Unknown Coder" : txtUserName.Text;
+            //Get the checked state of the Show Hints and Allow round skips check boxes
             bool useHints = checkUseHints.Checked;
-            bool useCheats = checkAllowCheats.Checked;
+            bool useRoundSkips = checkAllowSkipRounds.Checked;
+            bool infinteTime = cbxInfiniteTime.Checked;
 
-            RadioButton[] diffButtons = { this.radioEasy, this.radioHard, this.radioMedium, this.radioInsane };
+            //Create an array of all the difficulty buttons
+            RadioButton[] diffButtons = { this.radioEasy, this.radioHard, this.radioMedium };
 
+            //Check if any of the radio buttons are not checked
             if (!diffButtons.Any(radio => radio.Checked))
             {
                 MessageBox.Show("Please select a difficulty first!");
             }
+            //Else if they are checked, continue
             else
             {
+                //Check which one is checked and set the games difficulty to the corresponding radio button
                 if (radioEasy.Checked)
                 {
                     selectedDifficulty = GameState.Difficulty.Easy;
@@ -62,19 +57,48 @@ namespace WindowsFormsApplication1
                 {
                     selectedDifficulty = GameState.Difficulty.Hard;
                 }
-                else if (radioInsane.Checked)
-                {
-                    selectedDifficulty = GameState.Difficulty.Insane;
-                }
 
-                //Add the game state object to the game
-                Program.theGameState = new GameState(userName, selectedDifficulty, true, true);
-                frmMain theMainGame = new frmMain();
-
-                theMainGame.Show();
-
+                //Create a new GameState object and set it to the Program game state
+                //Set to program game state as its globally visible to all other classes
+                Program.theGameState = new GameState(userName, selectedDifficulty, useHints, useRoundSkips, infinteTime);
                 this.Hide();
+
+                //Create the frmGame which is the game form
+                frmGame theMainGame = new frmGame();
+
+                //Show the game form
+                theMainGame.Show();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmMainMenu_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void informatioBoxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCodeResources codeRes = new frmCodeResources();
+            codeRes.Show();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void checkAllowCheats_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            frmCodeResources codeResForm = new frmCodeResources();
+            codeResForm.Show();
         }
     }
 }

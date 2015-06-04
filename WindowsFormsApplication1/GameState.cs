@@ -1,52 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace WindowsFormsApplication1
 {
     /// <summary>
     ///     Game state
-    ///     
+    ///
     ///     Holds the game state variables
     /// </summary>
     public class GameState
     {
+        //Constants that the class needs
+        private const int EASY_OFFSET = 0;
 
-        frmMain theGameForm;
+        private const string FILE_NAME = "ch_";
+        private const int HARD_OFFSET = 4;
+        private const int MEDIUM_OFFSET = 2;
+        private const int NUM_OF_CHALLENGES = 6;
 
-        private int game_currentRound;
-        private int game_userScore;
-        private string game_userName;
-        private bool game_useCheats;
-        private bool game_allowHints;
-        private static Difficulty game_userDifficulty;
+        //Variables that the class uses
         private static CodeChallenge[] allChallenges;
+
+        private static Difficulty game_userDifficulty;
+        private bool game_allowHints;
+        private int game_currentRound;
         private int game_currentTimeLeft;
+        private bool game_allowRoundSkips;
+        private string game_userName;
+        private int game_userScore;
+        private bool game_infiniteTimeMode;
 
-        const int EASY_OFFSET = 1;
-        const int MEDIUM_OFFSET = 4;
-        const int HARD_OFFSET = 7;
-        const int INSANE_OFFSET = 10;
-        const string FILE_NAME = "ch_";
-
+        //Default constructor
         public GameState()
-        { 
-        
+        {
+            //Loads the challenge files for information (not game use)
+            LoadChallengeFilesForInformation();
         }
 
-        public GameState(string userName, Difficulty userDifficulty, bool hints, bool cheats)
+        /// <summary>
+        /// Game State constructor
+        ///
+        /// Takes in the difficulty, if hints are used, if skips are allowed, and infinite time mode
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userDifficulty"></param>
+        /// <param name="hints"></param>
+        /// <param name="skips"></param>
+        /// <param name="infinite"></param>
+        public GameState(string userName, Difficulty userDifficulty, bool hints, bool skips, bool infinite)
         {
-            game_currentRound = 0;
+            //Switch through the users difficulty choice to see what the starting round is
+            switch (userDifficulty)
+            {
+                case Difficulty.Easy:
+                    game_currentRound = 0;
+                    break;
+
+                case Difficulty.Medium:
+                    game_currentRound = 2;
+                    break;
+
+                case Difficulty.Hard:
+                    game_currentRound = 4;
+                    break;
+            }
+
+            //Set up game variables using the users input
             game_userScore = 0;
             game_userName = userName;
             game_userDifficulty = userDifficulty;
+            game_allowRoundSkips = skips;
+            game_allowHints = hints;
+            game_infiniteTimeMode = infinite;
 
+            //Load our challenge files (for game use)
             LoadChallengeFiles();
         }
 
+        //Enumerator for difficulty
         public enum Difficulty
         {
             Easy,
@@ -55,63 +85,10 @@ namespace WindowsFormsApplication1
             Insane
         };
 
-        public static void LoadChallengeFiles()
+        public CodeChallenge[] AllChallenges
         {
-            int userStartLevel = 0;
-
-            switch (game_userDifficulty)
-            { 
-                case Difficulty.Easy:
-                    userStartLevel = EASY_OFFSET;
-                    break;
-                case Difficulty.Medium:
-                    userStartLevel = MEDIUM_OFFSET;
-                    break;
-                case Difficulty.Hard:
-                    userStartLevel = HARD_OFFSET;
-                    break;
-                case Difficulty.Insane:
-                    userStartLevel = INSANE_OFFSET;
-                    break;
-            }
-
-            int length = 12 - userStartLevel;
-            int challengeCount = 0;
-
-            //Default of 12
-            allChallenges = new CodeChallenge[6];
-
-            for (int i = 0; i <  allChallenges.Length; i++)
-            {
-                StreamReader streamReader = new StreamReader("Challenges/" + FILE_NAME + i + ".txt");
-                string text = streamReader.ReadToEnd();
-                string[] parts = text.Split('@');
-
-                //Create a code challenge
-                CodeChallenge newChallenge = new CodeChallenge(parts[0], parts[1], parts[2], parts[3], int.Parse(parts[4]), int.Parse(parts[5]));
-
-                allChallenges[i] = newChallenge;
-                //challengeCount++;
-
-                streamReader.Close();
-            }
-
-        }
-
-        public void NextRound()
-        {
-            Game_currentRound++;
-        }
-
-        public void GameOver()
-        { 
-            //Gameover condition
-        }
-
-        public int Game_currentTimeLeft
-        {
-            get { return game_currentTimeLeft; }
-            set { game_currentTimeLeft = value; }
+            get { return allChallenges; }
+            set { allChallenges = value; }
         }
 
         public int Game_currentRound
@@ -120,10 +97,28 @@ namespace WindowsFormsApplication1
             set { game_currentRound = value; }
         }
 
-        public int Game_userScore
+        public bool Game_infiniteTimeMode
         {
-            get { return game_userScore; }
-            set { game_userScore = value; }
+            get { return game_infiniteTimeMode; }
+            set { game_infiniteTimeMode = value; }
+        }
+
+        public int Game_currentTimeLeft
+        {
+            get { return game_currentTimeLeft; }
+            set { game_currentTimeLeft = value; }
+        }
+
+        public bool Game_allowRoundSkips
+        {
+            get { return game_allowRoundSkips; }
+            set { game_allowRoundSkips = value; }
+        }
+
+        public bool Game_UseHints
+        {
+            get { return game_allowHints; }
+            set { game_allowHints = value; }
         }
 
         public Difficulty Game_userDifficulty
@@ -138,24 +133,103 @@ namespace WindowsFormsApplication1
             set { game_userName = value; }
         }
 
-        public CodeChallenge[] AllChallenges
+        public int Game_userScore
         {
-            get { return allChallenges; }
-            set { allChallenges = value; }
+            get { return game_userScore; }
+            set { game_userScore = value; }
         }
 
-        public bool Game_UseCheats
+        /// <summary>
+        /// Loads challenge files
+        ///
+        /// Loads the challenge files used in the game
+        /// </summary>
+        public static void LoadChallengeFiles()
         {
-            get { return game_useCheats; }
-            set { game_useCheats = value; }
+            //The user start level set to zero
+            int userStartLevel = 0;
+
+            //Switch through the users difficulty to figure out the offset for files
+            //The files naming goes ch_0 ch_1 etc
+            //Each number presents the round number
+            switch (game_userDifficulty)
+            {
+                case Difficulty.Easy:
+                    userStartLevel = EASY_OFFSET;
+                    break;
+
+                case Difficulty.Medium:
+                    userStartLevel = MEDIUM_OFFSET;
+                    break;
+
+                case Difficulty.Hard:
+                    userStartLevel = HARD_OFFSET;
+                    break;
+            }
+
+            //Work out the length for the challenges array
+            int length = NUM_OF_CHALLENGES - userStartLevel;
+            int fileStart = userStartLevel;
+
+            //Default of 5
+            allChallenges = new CodeChallenge[NUM_OF_CHALLENGES];
+
+            //For each of the challenge files do the following
+            for (int i = fileStart; i < allChallenges.Length; i++)
+            {
+                //Open up the challenge file
+                StreamReader streamReader = new StreamReader("Challenges/" + FILE_NAME + i + ".txt");
+                //Read the text
+                string text = streamReader.ReadToEnd();
+                //Split it into parts
+                string[] parts = text.Split('@');
+
+                //Create a code challenge with input from the challenge file
+                CodeChallenge newChallenge = new CodeChallenge(parts[0], parts[1], parts[2], parts[3], int.Parse(parts[4]), int.Parse(parts[5]));
+
+                //Set the new challenge
+                allChallenges[i] = newChallenge;
+
+                //Close the reader
+                streamReader.Close();
+            }
         }
 
-        public bool Game_UseHints
-        { 
-            get { return game_allowHints; }
-            set { game_allowHints = value; }
-            
+        /// <summary>
+        /// Load Challenge Files for Information
+        ///
+        /// Loads the challenge files purely for information use
+        /// Not different from the above method (LoadCHallengeFiles) except it does not use the users input / settings
+        /// </summary>
+        public static void LoadChallengeFilesForInformation()
+        {
+            //Default of 5
+            allChallenges = new CodeChallenge[NUM_OF_CHALLENGES];
+
+            for (int i = 0; i < allChallenges.Length; i++)
+            {
+                StreamReader streamReader = new StreamReader("Challenges/" + FILE_NAME + i + ".txt");
+                string text = streamReader.ReadToEnd();
+                string[] parts = text.Split('@');
+
+                //Create a code challenge
+                CodeChallenge newChallenge = new CodeChallenge(parts[0], parts[1], parts[2], parts[3], int.Parse(parts[4]), int.Parse(parts[5]));
+
+                allChallenges[i] = newChallenge;
+                //challengeCount++;
+
+                streamReader.Close();
+            }
         }
-                
+
+        /// <summary>
+        /// Next Round
+        ///
+        /// Starts the next round
+        /// </summary>
+        public void NextRound()
+        {
+            Game_currentRound++;
+        }
     }
 }

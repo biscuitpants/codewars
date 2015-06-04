@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class frmMain
+    partial class frmGame
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.rtbPlayerOneCodeBlock = new System.Windows.Forms.RichTextBox();
+            this.rtbPlayerTextBlock = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPlayerName = new System.Windows.Forms.Label();
             this.btnRunCode = new System.Windows.Forms.Button();
@@ -53,21 +53,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // rtbPlayerOneCodeBlock
+            // rtbPlayerTextBlock
             // 
-            this.rtbPlayerOneCodeBlock.AcceptsTab = true;
-            this.rtbPlayerOneCodeBlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
-            this.rtbPlayerOneCodeBlock.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbPlayerOneCodeBlock.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbPlayerOneCodeBlock.ForeColor = System.Drawing.SystemColors.Window;
-            this.rtbPlayerOneCodeBlock.Location = new System.Drawing.Point(194, 46);
-            this.rtbPlayerOneCodeBlock.Name = "rtbPlayerOneCodeBlock";
-            this.rtbPlayerOneCodeBlock.Size = new System.Drawing.Size(559, 322);
-            this.rtbPlayerOneCodeBlock.TabIndex = 1;
-            this.rtbPlayerOneCodeBlock.Text = "";
-            this.rtbPlayerOneCodeBlock.WordWrap = false;
-            this.rtbPlayerOneCodeBlock.TextChanged += new System.EventHandler(this.rtbPlayerOneCodeBlock_TextChanged);
-            this.rtbPlayerOneCodeBlock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtbPlayerOneCodeBlock_KeyPress);
+            this.rtbPlayerTextBlock.AcceptsTab = true;
+            this.rtbPlayerTextBlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.rtbPlayerTextBlock.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbPlayerTextBlock.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbPlayerTextBlock.ForeColor = System.Drawing.SystemColors.Window;
+            this.rtbPlayerTextBlock.Location = new System.Drawing.Point(194, 46);
+            this.rtbPlayerTextBlock.Name = "rtbPlayerTextBlock";
+            this.rtbPlayerTextBlock.Size = new System.Drawing.Size(559, 322);
+            this.rtbPlayerTextBlock.TabIndex = 1;
+            this.rtbPlayerTextBlock.Text = "";
+            this.rtbPlayerTextBlock.WordWrap = false;
+            this.rtbPlayerTextBlock.TextChanged += new System.EventHandler(this.rtbPlayerTextBlock_TextChanged);
             // 
             // label1
             // 
@@ -76,7 +75,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 3;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblPlayerName
             // 
@@ -89,12 +87,12 @@
             // 
             // btnRunCode
             // 
-            this.btnRunCode.ForeColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnRunCode.ForeColor = System.Drawing.Color.Black;
             this.btnRunCode.Location = new System.Drawing.Point(648, 507);
             this.btnRunCode.Name = "btnRunCode";
             this.btnRunCode.Size = new System.Drawing.Size(105, 23);
             this.btnRunCode.TabIndex = 8;
-            this.btnRunCode.Text = "RUN";
+            this.btnRunCode.Text = "Run Code";
             this.btnRunCode.UseVisualStyleBackColor = true;
             this.btnRunCode.Click += new System.EventHandler(this.btnRunCode_Click);
             // 
@@ -139,7 +137,7 @@
             // 
             // btnSkipRound
             // 
-            this.btnSkipRound.ForeColor = System.Drawing.Color.Red;
+            this.btnSkipRound.ForeColor = System.Drawing.Color.Black;
             this.btnSkipRound.Location = new System.Drawing.Point(526, 507);
             this.btnSkipRound.Name = "btnSkipRound";
             this.btnSkipRound.Size = new System.Drawing.Size(116, 23);
@@ -156,7 +154,6 @@
             this.lblScoreCount.Size = new System.Drawing.Size(19, 13);
             this.lblScoreCount.TabIndex = 14;
             this.lblScoreCount.Text = "45";
-            this.lblScoreCount.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblRoundCount
             // 
@@ -197,7 +194,6 @@
             this.button1.TabIndex = 17;
             this.button1.Text = "CodeDex";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label2
             // 
@@ -225,7 +221,6 @@
             this.button2.TabIndex = 20;
             this.button2.Text = "Debug";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // timer1
             // 
@@ -233,7 +228,7 @@
             // 
             // btnStartRound
             // 
-            this.btnStartRound.Location = new System.Drawing.Point(194, 505);
+            this.btnStartRound.Location = new System.Drawing.Point(194, 508);
             this.btnStartRound.Name = "btnStartRound";
             this.btnStartRound.Size = new System.Drawing.Size(75, 23);
             this.btnStartRound.TabIndex = 21;
@@ -246,11 +241,11 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.Size = new System.Drawing.Size(136, 13);
             this.label3.TabIndex = 22;
-            this.label3.Text = "Playing Code Wars";
+            this.label3.Text = "You are playing Code Wars";
             // 
-            // frmMain
+            // frmGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -272,11 +267,10 @@
             this.Controls.Add(this.btnRunCode);
             this.Controls.Add(this.lblPlayerName);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.rtbPlayerOneCodeBlock);
+            this.Controls.Add(this.rtbPlayerTextBlock);
             this.Controls.Add(this.label1);
-            this.Name = "frmMain";
+            this.Name = "frmGame";
             this.Text = "Code War";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -285,7 +279,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox rtbPlayerOneCodeBlock;
+        private System.Windows.Forms.RichTextBox rtbPlayerTextBlock;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblPlayerName;

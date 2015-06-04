@@ -15,10 +15,11 @@
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\CodeChallenges.csprojResolveAssemblyReference.cache
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmAboutPage.resources
-\\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmMain.resources
-\\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmCodeInformationDex.resources
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmMainMenu.resources
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\CodeChallenges.csproj.GenerateResource.Cache
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 \\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+\\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmGame.resources
+\\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmCodeResources.resources
+\\psf\Home\Desktop\Folders\Visual Studio Projects\School Projects\Assignment 2\CodeChallenges\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmGameOver.resources
